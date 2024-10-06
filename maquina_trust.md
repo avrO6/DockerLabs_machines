@@ -57,7 +57,7 @@ Tenemos un directorio llamado secret.php. Le echamos un vistazo.
 
 ![image](https://github.com/user-attachments/assets/54762586-6bc1-4cd8-9b65-0a4fb773bd24)
 
-Podemos ver un mensaje dirijido hacia Mario, por lo que podemos pensar que hay algun usuario llamado mario. El único vector de ataque que se me ocurre es hacer fuerza bruta al otro puerto abierto, el 22 que es el ssh con el usuario mario.
+Podemos ver un mensaje dirigido hacia Mario, por lo que podemos pensar que hay algun usuario llamado mario. El único vector de ataque que se me ocurre es hacer fuerza bruta al otro puerto abierto, el 22 que es el ssh con el usuario mario.
 
 ```bash
 hydra -l mario -P /usr/share/worlists/rockyou.txt ssh://10.89.0.2
