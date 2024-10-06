@@ -32,6 +32,6 @@ nmap -p22,80 -sV 10.89.0.2
 - `-p22,80`: Indicamos que el escaneo se haga solo sobre esos 2 puertos.
 - `-sV`: Indicamos que queremos hacer un escaneo de las versiones que tienen los servicios corriendo en esos puertos.
 
-![[Pasted image 20241006191644.png]]
+![image](https://github.com/user-attachments/assets/86d3bf98-8432-4ecd-871c-45f4571c3b3b)
 
 Podemos ver las versiones de los servicios SSH y http lo que nos da información sobre el sistema operativo.
