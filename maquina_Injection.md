@@ -33,5 +33,34 @@ nmap -p22,80 -sV 10.89.0.2 -oN puertos_versiones.txt
 
 ![image](https://github.com/user-attachments/assets/8f579af8-b00f-46f1-9092-ad3cedee0ba9)
 
+----
 
-EN PROCESO....
+## Intrusion
+Tenemos una web en la que hay un login, asique probamos a hacer una inyeccion sql en el formulario.
+
+![image](https://github.com/user-attachments/assets/d7856905-0757-4cbb-8ccb-7c14148d2de6)
+
+Hacemos login y vemos que nos deja entrar con el usuario Dylan y nos pone que se ha introducido correctamente la contraseña siguiente.
+
+![image](https://github.com/user-attachments/assets/dd4ab3d9-39e1-484d-8564-3f0bddc6dc6e)
+
+Teniendo esta información puedo pensar que dylan es un usuario del sistema y que a traves de SSH me podria conectar con esa contraseña.
+
+Vamos a probar.
+
+```bash
+ssh dylan@10.88.0.2 
+```
+
+Probamos con la contraseña que hemos encontrado en la web y nos acabamos de conectar como el usuario dylan.
+
+![image](https://github.com/user-attachments/assets/ac1ca330-304a-42e7-9fc1-f09e3c145e0b)
+
+----
+
+## Escalada de privilegios
+
+EN PROCESO...
+
+
+
