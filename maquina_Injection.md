@@ -60,7 +60,42 @@ Probamos con la contraseña que hemos encontrado en la web y nos acabamos de con
 
 ## Escalada de privilegios
 
-EN PROCESO...
+Ejecutamos `sudo -l` para listar los permisos sudo del usuario actual. 
+Pero como vemos nos da error.
+
+![image](https://github.com/user-attachments/assets/beef7f85-f02c-481c-96e1-72a363675ec0)
+
+Para poder ver si hay algun archivo que podamos ejecutar con permisos de sudo, ejecutamos el comando `finf / -perm -4000 2>/dev/null` que realiza una busqueda desde la raiz del sistema de archivos que tengan el bit SUID activado.
+
+- `find /`: Inicia la búsqueda desde el directorio raíz (/), lo que significa que revisa todo el sistema de archivos.
+
+- `-perm -4000`: Busca archivos que tengan el bit de SUID activado. Este bit permite que un archivo se ejecute con los permisos del propietario del archivo en lugar de los permisos del usuario que lo ejecuta. El 4000 representa este bit específico.
+
+- `2>/dev/null`: Redirige la salida de error (cualquier mensaje de error) a /dev/null, lo que significa que se descartarán esos mensajes. Esto se utiliza para evitar que aparezcan errores en la pantalla, como los que pueden surgir al intentar acceder a directorios sin permisos.
+
+![image](https://github.com/user-attachments/assets/4dca1198-6eef-40ce-93c5-eda20ea16b96)
+
+Podemos utilizar **GTFObins** para ver información sobre binarios de Unix que pueden ser utilizados para explotar vulnerabilidades en sistemas.
+
+Y vemos que podemos utilizar el binario env para esacalar privilegios por SUID.
+
+![image](https://github.com/user-attachments/assets/8e6bbf84-9ae0-4edf-8a2c-9c40748e502e)
+
+Nos indica que podemos utilizar `./env /bin/sh -p` para escalar los privilegios.
+
+- `./env`: Este es el binario env, que se utiliza para ejecutar un comando en un entorno modificado. El prefijo ./ indica que se está ejecutando env en el directorio actual.
+
+- `/bin/sh`: Este es el comando que se ejecutará, en este caso, una nueva instancia de sh.
+
+- `-p`: Esta opción se utiliza para iniciar la shell sin desactivar los privilegios efectivos del usuario, lo que significa que se conservarán los privilegios de usuario elevando el acceso a la shell.
+
+Vamos a usar el comando `which env` para ver en que directorio se encuentra nuestro binario y como no estamos en ese directorio ejecutamos el comando `/usr/bin/env /bin/bash -p`.
+
+En mi caso pongo `/bin/bash` porque prefiero una bash a una sh, pero el funcionamiento del comando es el mismo.
+
+![image](https://github.com/user-attachments/assets/ebac8e13-bfd2-4fce-a491-052c387b2e92)
+
+Ya somos usuario root. Maquina COMPLETADA.
 
 
 
