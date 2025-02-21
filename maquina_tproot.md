@@ -80,7 +80,7 @@ exploit
 
 ![image](https://github.com/user-attachments/assets/773bf394-c356-4741-b422-fd9892d1bf38)
 
-Ya tendriamos acceso a la maquina victima con privilegios de root, pero se ve un poco mal y es complicado moverse con la terminal de esa manera. Vamos a hacer un tratamiento de la TTI para añadir un prompt y poder manejarnos mejor.
+Ya tendriamos acceso a la maquina victima con privilegios de root, pero se ve un poco mal y es complicado moverse con la terminal de esa manera. Vamos a hacer un tratamiento de la TTY para añadir un prompt y poder manejarnos mejor.
 
 ```bash
 script /dev/null -c bash
