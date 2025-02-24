@@ -38,3 +38,31 @@ nmap -p22,80 -sCV 172.17.0.2 -oN targeted.txt
 ![image](https://github.com/user-attachments/assets/3a31f604-dfc1-48d9-9fbf-61358a01b4a8)
 
 El escaneo nos muestra las versiones de los servicios que corren por los puertos y podemos ver que tenemos el servicio ssh, pero no disponemos de credenciales y un servicio web que podemos ver que tiene.
+
+![image](https://github.com/user-attachments/assets/19c20430-5549-4dbf-a684-69451d14e1a5)
+![image](https://github.com/user-attachments/assets/a47861fc-6889-4dd0-944f-aa7a69e55aa2)
+
+En la web no parece haber nada excepto un mensage de error extraño que aparece justo debajo del footer. Si miramos el codigo fuente vemos el mismo mensaje de error el final peor no hay nada interesante tampoco.
+Como no veo nada en la web vamos ha hacer un poco de fuzzing de directorios con gobuster a ver si encontramos algo.
+
+```bash
+gobuster dir --url 'http://172.17.0.2' -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt
+```
+
+![image](https://github.com/user-attachments/assets/f51112a4-305a-47be-aeca-2a961167b937)
+
+Vemos un assets y un index.php. El index es el archivo principal, donde nos hemos metido de primeras. Asique vamos a mirar el direcctorio /assets.
+Aqui nos encontramos una imagen que podemos descargarla y mirar los metadatos por si tuviera algo que nos sirva, como un nombre de usuario para probar en el servicio ssh.
+
+![image](https://github.com/user-attachments/assets/7e2a5db9-f2c7-4b3c-b3e9-6c273ea59599)
+
+
+```bash
+exiftool background.jpg 
+```
+
+![image](https://github.com/user-attachments/assets/64f8078e-2d45-47d2-8d36-48794c3562fc)
+
+Tampoco. No vemos ninguna información relevante.
+
+
