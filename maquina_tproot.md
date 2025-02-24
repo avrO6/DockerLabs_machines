@@ -33,7 +33,7 @@ nmap -p21,80 -sCV 172.17.0.2 -oN targeted.txt
 ```
 
 - `-p21,80`: Indicamos que el escaneo se haga solo sobre esos 2 puertos.
-- `-sCV`: Indicamos que queremos hacer un escaneo de las versiones que tienen los servicios corriendo en esos puertos y lanza unos scripts de reconocimiento que nos danran un poco mas de informacion osbre el servicio.
+- `-sCV`: Indicamos que queremos hacer un escaneo de las versiones que tienen los servicios corriendo en esos puertos y lanza unos scripts de reconocimiento que nos daran un poco mas de informacion sobre el servicio.
 
 ![image](https://github.com/user-attachments/assets/1b80d4e8-512e-4dd9-893e-d6e94d0c6ed0)
 
