@@ -93,4 +93,33 @@ ssh -i id_rsa vaxei@172.17.0.2
 
 ![image](https://github.com/user-attachments/assets/1dbf79eb-ab38-4501-8d19-0562965c8c2d)
 
+Ya estamos dentro de la maquina victima. Vamos a hacer un tratamiento de la TTY para manejarnos mejor por la terminal y vamos a ver si podemos escalar pribilegios dentro de esta maquina.
+
+```bash
+script /dev/null -c bash
+export TERM=xterm
+sudo -l 
+```
+
+![image](https://github.com/user-attachments/assets/f22a0fa9-9177-4b67-ba08-f3f655836c60)
+
+Podemos ver que con el usuario luisillo podemos ejecutar el binario perl.
+
+![image](https://github.com/user-attachments/assets/8232ded6-a559-4229-b9ad-c37dd5d5b020)
+
+Ya estamos como el usuario luisillo y con `sudo -l`, vemos que podemos ejecutar un script de python con privilegios de root.
+
+![image](https://github.com/user-attachments/assets/b7d487b4-91d0-42b8-a48c-61da52d9fa98)
+
+![image](https://github.com/user-attachments/assets/d4f4bf5c-ce80-497b-b389-020e5e3db62e)
+
+Vemos que no tenemos permisos de escritura así que no podemos editar el codigo para hacerlo malicioso, pero importa varias librerias así que podemos probar a hacer un Python Library Hijacking.
+
+Vamos a crear un escript en python, dentro del directorio donde se encuentra el escript (`/opt`), con el mismo nombre que alguna libreria de las que se importan en el script que vamos a usar para escalar privilegios, y por el orden de busqueda de bibliotecas de python vamos a hacer que encuentre primero nuestra "biblioteca" maliciosa y podamos obtener una shell con permisos elevados.
+
+![image](https://github.com/user-attachments/assets/4e1e81a5-7c27-4099-8698-8bd91e8621a3)
+![image](https://github.com/user-attachments/assets/bbb745e7-873a-454d-8fbf-27f5595a82f2)
+![image](https://github.com/user-attachments/assets/38667112-7b87-4833-bc1b-e51a830ce339)
+
+Con esto ya tendríamos la maquina comprometida al completo, en la que hemos aprendido como detectar y explotar un LFI, como realizar movimiento lateral a otro usuario explotando sudo, y por ultimo como escalar privilegios realizando un Python Library Hijacking.
 
